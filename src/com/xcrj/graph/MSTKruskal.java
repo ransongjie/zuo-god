@@ -92,7 +92,4 @@ public class MSTKruskal {
         //
         return rset;
     }
-
-    //todo 并查集
-    
 }
