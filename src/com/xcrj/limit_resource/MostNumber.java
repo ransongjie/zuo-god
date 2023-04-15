@@ -1,4 +1,4 @@
-package com.xcrj.hash;
+package com.xcrj.limit_resource;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -6,8 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 
-//大文件统计 限制内存大小
-public class BigFile {
+
+//出现次数最多数字 大文件统计 限制内存大小 todo
+public class MostNumber {
     public static void main(String[] args) throws IOException {
         //结果5.48GB文件
         // genBigFile(4,"xcrj.txt",10000);
