@@ -5,6 +5,7 @@
 |---|---|
 |test|测试|
 |bit|位操作|
+|bit2|位操作|
 |sort|排序|
 |dichotomy|二分法|
 |link|链表|
@@ -14,7 +15,13 @@
 |prefix_tree|前缀树|
 |greed|贪心|
 |force|暴力递归|
-
+|hash|hash|
+|union_set|并查集|
+|str|字符串，KMP，Manacher|
+|window_max|窗口最大值|
+|mono_stack|单调栈|
+|limit_resource|资源限制|
+|dp|暴力递归改动态规划|
 # 计算机bit
 ```
  * 计算机中负数使用补码表示
