@@ -29,7 +29,7 @@ public class QuickSort1 {
             quickSort(as, pivot+1, end);
         }
     }
-
+    //start到end遍历, <=end的放到end左边, >end放到end右边
     public static int partition(int[] as,int start,int end) {
         int llimit=start-1;
         int i=start;

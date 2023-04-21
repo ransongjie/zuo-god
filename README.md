@@ -22,6 +22,7 @@
 |mono_stack|单调栈|
 |limit_resource|资源限制|
 |dp|暴力递归改动态规划|
+|ordered_table|有序表|
 # 计算机bit
 ```
  * 计算机中负数使用补码表示

@@ -4,6 +4,10 @@ import java.util.Arrays;
 
 public class HeapSort {
     public static void main(String[] args) {
+        int[] as={2,1,5,9,5,7,0,8};
+        heapSort(as);
+        System.out.println(Arrays.toString(as));
+
         // int[] as={9,6,5,3,4,5,0};
         // int[] as={1,6,5,3,4,5,0};
         // int[] as={1,2};
