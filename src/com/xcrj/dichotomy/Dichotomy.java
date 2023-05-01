@@ -11,23 +11,30 @@ public class Dichotomy {
         // int r=dich(as, 0, as.length-1, 4);
         // System.out.println(r==-1?-1:as[r]);
         // System.out.println(Arrays.binarySearch(as, 4));
+
+        int[] as={1};
+        Arrays.sort(as);
+        System.out.println(Arrays.toString(as));
+        int r=dich(as, 0, as.length, 1);
+        System.out.println(r==-1?-1:as[r]);
+        System.out.println(Arrays.binarySearch(as, 1));
         
-        int times=10000;
-        int maxLen=1000;
-        int maxV=100;
-        for (int i = 0; i < times; i++) {
-            int[] as=getSotedAs(maxLen, maxV);
-            int search=(int)(Math.random()*maxV);
-            int a=dich(as, 0, as.length-1, search);
-            int b=cp(as, search);
-            if(a>=0&&b>=0&&a!=b){
-                System.out.println("not good");
-                System.out.println(Arrays.toString(as));
-                System.out.println(search);
-                System.out.println(as[a]);
-                System.out.println(as[b]);
-            }
-        }
+        // int times=10000;
+        // int maxLen=1000;
+        // int maxV=100;
+        // for (int i = 0; i < times; i++) {
+        //     int[] as=getSotedAs(maxLen, maxV);
+        //     int search=(int)(Math.random()*maxV);
+        //     int a=dich(as, 0, as.length-1, search);
+        //     int b=cp(as, search);
+        //     if(a>=0&&b>=0&&a!=b){
+        //         System.out.println("not good");
+        //         System.out.println(Arrays.toString(as));
+        //         System.out.println(search);
+        //         System.out.println(as[a]);
+        //         System.out.println(as[b]);
+        //     }
+        // }
     }
 
     public static int dich(int[] as,int start,int end,int search) {
