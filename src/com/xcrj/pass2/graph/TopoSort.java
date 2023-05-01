@@ -1,11 +1,9 @@
-package com.xcrj.graph;
+package com.xcrj.pass2.graph;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
 
-public class TraWidthFirst {
+public class TopoSort {
     public static void main(String[] args) {
         int[][] inss={//有向图
             {1,2,0},
@@ -16,28 +14,35 @@ public class TraWidthFirst {
             {5,4,0},
             {8,6,0},
             {8,9,0},
+            {9,7,0},
+            {7,4,0},
             {6,4,0},
             {6,7,0}
         };
-        Graph g=Convert.convert(inss);
+        Graph g=Convert.toGraph(inss);
         for(Edge e:g.edges){
             System.out.println(e.from.val+", "+e.to.val+", "+e.weight);
         }
-        wfs(g);
+        //
+        topo(g);
     }
 
-    public static void wfs(Graph g) {
+    public static void topo(Graph g) {
         Queue<Node> que=new LinkedList<>();
-        Set<Node> selected=new HashSet<>();
-        que.offer(g.nodes.get(1));
-        selected.add(g.nodes.get(1));
+        for(Node n:g.nodes.values()){
+            if(n.in==0){
+                que.offer(n);
+            }
+        }
+
         while(!que.isEmpty()){
             Node a=que.poll();
-            System.out.println(a.val);//出队访问
-            for(Node b:a.nodes){
-                if(selected.contains(b)) continue;
-                que.offer(b);
-                selected.add(b);
+            System.out.println(a.val);
+            for(Node b:a.adjns){
+                b.in--;
+                if(b.in==0){
+                    que.offer(b);
+                }
             }
         }
     }

@@ -33,9 +33,7 @@ public class TraDeepFirst {
         while(!stack.isEmpty()){
             Node a=stack.pop();
             for(Node b:a.nodes){
-                if(selected.contains(b)){
-                    continue;
-                }
+                if(selected.contains(b)) continue;
                 stack.push(a);//
                 stack.push(b);
                 selected.add(b);

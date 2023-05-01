@@ -1,4 +1,4 @@
-package com.xcrj.graph;
+package com.xcrj.pass2.graph;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -19,7 +19,7 @@ public class TraWidthFirst {
             {6,4,0},
             {6,7,0}
         };
-        Graph g=Convert.convert(inss);
+        Graph g=Convert.toGraph(inss);
         for(Edge e:g.edges){
             System.out.println(e.from.val+", "+e.to.val+", "+e.weight);
         }
@@ -27,17 +27,18 @@ public class TraWidthFirst {
     }
 
     public static void wfs(Graph g) {
+        if(g==null) return;
         Queue<Node> que=new LinkedList<>();
-        Set<Node> selected=new HashSet<>();
-        que.offer(g.nodes.get(1));
-        selected.add(g.nodes.get(1));
+        Set<Node> visited=new HashSet<>();
+        que.offer(g.nodes.get(1));//随便找一个点开始遍历
+        visited.add(g.nodes.get(1));
         while(!que.isEmpty()){
             Node a=que.poll();
-            System.out.println(a.val);//出队访问
-            for(Node b:a.nodes){
-                if(selected.contains(b)) continue;
+            System.out.println(a.val);
+            for(Node b:a.adjns){
+                if(visited.contains(b)) continue;
                 que.offer(b);
-                selected.add(b);
+                visited.add(b);
             }
         }
     }
