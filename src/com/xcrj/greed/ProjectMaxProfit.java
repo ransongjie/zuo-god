@@ -13,7 +13,7 @@ public class ProjectMaxProfit{
         cps[4]=new CostProfit(3, 2);
         cps[5]=new CostProfit(4, 10);
         //
-        int maxProfit=maxProfit(0, 4, cps);
+        int maxProfit=maxProfit(1, 4, cps);
         System.out.println(maxProfit);
     }
     static class CostProfit{

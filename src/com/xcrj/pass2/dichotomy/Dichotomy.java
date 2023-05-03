@@ -45,8 +45,8 @@ public class Dichotomy {
 
         int mid=(start+end)/2;
         if(as[mid]==search) return mid;
-        if(as[mid]>search) return proccess(as, search, start, mid-1);
-        if(as[mid]<search) return proccess(as, search, mid+1, end);
+        if(as[mid]>search) return proccess(as, search, start, mid-1);//return
+        if(as[mid]<search) return proccess(as, search, mid+1, end);//
         return -1;
     }
 
