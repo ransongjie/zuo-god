@@ -17,7 +17,7 @@ public class StrConvert {
             r+=convert(i+1, cs)+convert(i+2, cs);
             return r;
         }
-        if(cs[i]=='2'&&cs[i+1]>'0'&&cs[i+1]<'7') {
+        if(cs[i]=='2'&&i+1<cs.length&&cs[i+1]>'0'&&cs[i+1]<'7') {
             r+=convert(i+1, cs)+convert(i+2, cs);
             return r;
         }
