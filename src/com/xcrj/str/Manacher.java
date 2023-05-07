@@ -31,13 +31,13 @@ public class Manacher {
         int maxC=0;//历史最大回文半径的回文中心
         for (int i = 0; i < cstr.length(); i++) {
             //1
-            int r=i>=(maxC+maxR)?1:Math.min((maxC+maxR-i),rs[maxC-(i-maxC)]);
-            while(i+r<cs.length&&i-r>-1&&cs[i-r]==cs[i+r]){
-                rs[i]=++r;
+            rs[i]=i>=(maxC+maxR)?1:Math.min((maxC+maxR-i),rs[maxC-(i-maxC)]);
+            while(i+rs[i]<cs.length&&i-rs[i]>-1&&cs[i-rs[i]]==cs[i+rs[i]]){
+                ++rs[i];
             }
             
-            if(r>maxR){
-                maxR=r;
+            if(rs[i]>maxR){
+                maxR=rs[i];
                 maxC=i;
             }
         }
@@ -88,9 +88,8 @@ public class Manacher {
             if(i+rs[i]>R){
                 R=i+rs[i];
                 C=i;
+                maxr=Math.max(maxr, rs[i]);
             }
-
-            maxr=Math.max(maxr, rs[i]);
         }
 
         return maxr-1;
