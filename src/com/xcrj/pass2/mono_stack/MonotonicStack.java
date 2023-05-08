@@ -150,7 +150,7 @@ public class MonotonicStack {
         for (int i = 0; i < as.length; i++) {
             int a=as[i];
             //往左
-            Integer lefti=-1;
+            Integer lefti=null;
             Integer leftv=null;
             for (int j = i-1; j >-1 ; j--) {
                 if(as[j]>a){
@@ -160,7 +160,7 @@ public class MonotonicStack {
                 }
             }
             //往右
-            Integer righti=-1;
+            Integer righti=null;
             Integer rightv=null;
             for (int j = i+1; j < as.length; j++) {
                 if(as[j]>a){
