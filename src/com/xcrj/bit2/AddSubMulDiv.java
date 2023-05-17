@@ -51,7 +51,7 @@ public class AddSubMulDiv {
         }
         if(a==Integer.MIN_VALUE&&b==Integer.MIN_VALUE) return 1;
         if(a!=Integer.MIN_VALUE&&b==Integer.MIN_VALUE) return 0;
-        //divide中是转化正数计算的, -Integer.MIN_VALUE 将越界溢出
+        //divide中是转为正数计算的, -Integer.MIN_VALUE 将越界溢出
         if(a==Integer.MIN_VALUE&&b!=Integer.MIN_VALUE) {//todo
             int m1=divide((add(a, 1)), b);
             int m2=mul(m1, b);

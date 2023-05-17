@@ -41,7 +41,7 @@ public class MinAimCoin {
         //     return rest==0?1:0;
         // }
         if(rest<0) return -1;//非正常逻辑放到前面
-        if(rest==0) return 0;//无硬币可选
+        if(rest==0) return 0;//无硬币可选，所需硬币数量为0
         if(idx==coins.length) return -1;
         
         //选择当前硬币后, 再从idx+1~n选择k个硬币=rest-coins[idx]
@@ -49,8 +49,8 @@ public class MinAimCoin {
         int nxt=minAimCoin(coins, rest, idx+1);
         if(cur==-1&&nxt==-1) return -1;
         if(cur==-1&&nxt!=-1) return nxt;
-        if(cur!=-1&&nxt==-1) return cur+1;
-        return Math.min(cur, 1+nxt);
+        if(cur!=-1&&nxt==-1) return cur+1;//1是当前硬币
+        return Math.min(cur+1, nxt);
     }
     /**
      * 记忆搜索
@@ -60,7 +60,7 @@ public class MinAimCoin {
      * 更新缓存
      */
     public static int minAimCoin2(int[]coins,int aim,int idx) {
-        int[][] dp=new int[idx+1][aim+1];
+        int[][] dp=new int[coins.length+1][aim+1];
         for (int[] is : dp) {
             Arrays.fill(is, -2);
         }
@@ -69,7 +69,6 @@ public class MinAimCoin {
     public static int memSearch(int[]coins,int rest,int idx,int[][]dp) {
         if(rest<0) return -1;//
         if(dp[idx][rest]!=-2) return dp[idx][rest];
-
         if(rest==0){
             dp[idx][rest]=0;
             return dp[idx][rest];   
@@ -79,8 +78,8 @@ public class MinAimCoin {
             return dp[idx][rest];
         }
 
-        int cur=minAimCoin(coins, rest-coins[idx], idx+1);
-        int nxt=minAimCoin(coins, rest, idx+1);
+        int cur=memSearch(coins, rest-coins[idx], idx+1,dp);
+        int nxt=memSearch(coins, rest, idx+1,dp);
         if(cur==-1&&nxt==-1) {
             dp[idx][rest]=-1;
             return dp[idx][rest];
@@ -93,7 +92,7 @@ public class MinAimCoin {
             dp[idx][rest]=cur+1;
             return dp[idx][rest];
         }
-        dp[idx][rest]=Math.min(cur, 1+nxt);
+        dp[idx][rest]=Math.min(cur+1, nxt);
         return dp[idx][rest];
     }
     /**
@@ -143,7 +142,7 @@ public class MinAimCoin {
                     continue;
                 }
 
-                dp[i][j]=Math.min(cur, 1+nxt);
+                dp[i][j]=Math.min(cur+1, nxt);
             }
         }
 

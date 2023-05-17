@@ -9,30 +9,30 @@ package com.xcrj.dp;
  */
 public class WayPBobSurvial {
     public static void main(String[] args) {
-        // int M=6;
-        // int N=5;
-        // int a=3;
-        // int b=4;
-        // int k=4;
-        // System.out.println(wayPBobSurvial(M, N, a, b, k));
-        // System.out.println(wayPBobSurvial3(M, N, a, b, k));
-        // System.out.println(wayPBobSurvial4(M, N, a, b, k));
+        int M=9;
+        int N=3;
+        int a=8;
+        int b=0;
+        int k=3;
+        System.out.println(wayPBobSurvial(M, N, a, b, k));
+        System.out.println(wayPBobSurvial3(M, N, a, b, k));
+        System.out.println(wayPBobSurvial4(M, N, a, b, k));
 
-        int times=10000;
-        int maxV=10;
-        for (int i = 0; i < times; i++) {
-            Element element=getE(maxV);
-            String p1=wayPBobSurvial(element.M, element.N, element.a, element.b, element.k);
-            String p2=wayPBobSurvial4(element.M, element.N, element.a, element.b, element.k);
-            if(!p1.equals(p2)){
-                System.out.println("not good");
-                System.out.println(element.M+", "+element.N
-                +", "+element.a+", "+element.b+", "+element.k);
-                System.out.println(p1);
-                System.out.println(p2);
-                throw new RuntimeException();
-            }
-        }
+        // int times=10000;
+        // int maxV=10;
+        // for (int i = 0; i < times; i++) {
+        //     Element element=getE(maxV);
+        //     String p1=wayPBobSurvial(element.M, element.N, element.a, element.b, element.k);
+        //     String p2=wayPBobSurvial4(element.M, element.N, element.a, element.b, element.k);
+        //     if(!p1.equals(p2)){
+        //         System.out.println("not good");
+        //         System.out.println(element.M+", "+element.N
+        //         +", "+element.a+", "+element.b+", "+element.k);
+        //         System.out.println(p1);
+        //         System.out.println(p2);
+        //         throw new RuntimeException();
+        //     }
+        // }
     }
 
     /**
@@ -61,10 +61,7 @@ public class WayPBobSurvial {
 
     /**
      * 最大公约数
-     * 辗转相除法
-     * 先用 x 除以 y
-     * 若余数为 0 则 y 为两数的最大公约数；
-     * 若余数不为零，则令 x = y，y = 余数，重复步骤 1 直到余数为 0，此时的 y 为两数的最大公约数。
+     * 辗转相除法 gcd(a,b)=gcd(b,a%b), param2=0 return param1
      */
     private static long gcd(long a,long b) {
         return b==0?a:gcd(b,a%b);

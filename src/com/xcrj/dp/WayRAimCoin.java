@@ -3,7 +3,7 @@ package com.xcrj.dp;
 import java.util.Arrays;
 
 /**
- * 组成目标值的最少硬币数量
+ * 组成目标值的硬币数量种数
  * 可重复选取同一个硬币(0~n次)
  * coins={硬币币值}
  * aim 目标值
