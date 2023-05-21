@@ -1,65 +1,117 @@
 package com.xcrj.ordered_table;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-
-/**
- * 跳表
- * 利用了高度跳过了大量无关结点，与数据的输入情况无关
- * 操作
- * - 默认结点（值最小），概率p 层数
- * - 新入结点，概率p 层数，从左往右 从上往下 1.扩充层数 2.找<=的结点，
- * -- <=：就跳过去。从左往右 从上往下 1.扩充层数 2.找<=的结点，
- * -- >：则判断层数更矮>>则开始连接
- *
- * 跳表特点：
- * - 利用level跳过无关结点，与数据的输入情况无关
- * - O(log n)
- * - 空间来换取时间
- * 跳表Java实现：ConcurrentSkipListMap, ConcurrentSkipListSet
- * 跳表性质：
- * - 每个结点包含两个指针，next，down
- * - 每一层都是一个有序的链表
- * - 元素会在level i以下所有层出现。level 0包含所有元素
- * 跳表插入
- * - 获取随机level
- * - 从左往右，从上到下
- * -- 我的level>默认结点的level，扩充层数 连向我
- * -- 我的value更大往后走，层数？，
- * 跳表搜索：
- * -
- */
-public class SkipTable {
-    private class Node{
+import java.util.*;
+// 跳表 左边界最小 右边界最大
+public class SkipTable2 {
+    private class Node {
+        boolean start;//起始结点
+        boolean end;//终止结点
         int key;
-        int level;//结点行
+        int level;
         Node next;
         Node down;
+        Node(int level,boolean start,boolean end){
+            this.level=level;
+            this.start=start;
+            this.end=end;
+        }
         Node(int key,int level){
             this.key=key;
             this.level=level;
+            this.start=false;
+            this.end=false;
         }
     }
 
     LinkedList<Node> headColumn;
     LinkedList<Node> tailColumn;
-    int maxLevel;//跳表行数
-    int size;//结点总数
-    public SkipTable(){
+    int maxLevel;
+    int size;
+    public SkipTable2(){
+        headColumn=new LinkedList<>();
+        tailColumn=new LinkedList<>();
+        maxLevel=-1;
+        size=0;
+    }
+
+    public Node search(int key){
+        Node head=headColumn.getFirst();
+        Node p=head;
+        while(p!=null&&p.next!=null){
+            if(!p.next.end&&p.next.key==key){
+                return p.next;
+            }
+            if(!p.next.end&&p.next.key<key){
+                p=p.next;
+                continue;
+            }
+            if(p.next.end||p.next.key>key){
+                p=p.down;
+                continue;
+            }
+        }
+        return null;
+    }
+
+    private Node searchPre(int key){
+        Node head=headColumn.getFirst();
+        Node p=head;
+        while(p!=null&&p.next!=null){
+            if(!p.next.end&&p.next.key==key){
+                return p;
+            }
+            if(!p.next.end&&p.next.key<key){
+                p=p.next;
+                continue;
+            }
+            if(p.next.end||p.next.key>key) {
+                p = p.down;
+                continue;
+            }
+        }
+        return null;
+    }
+
+    public void clear(){
         headColumn=new LinkedList<>();
         tailColumn=new LinkedList<>();
         maxLevel=-1;//从第0层开始
         size=0;
     }
 
-    /**
-     * 添加元素，跳表元素不能重复
-     * @param key
-     */
+    public void show(){
+        System.out.println("跳表层数："+maxLevel+", 元素个数为："+size);
+        for (int i = 0; i <=maxLevel ; i++) {
+            Node linFirst = headColumn.get(i);
+            System.out.print("第"+linFirst.level+"层:\t"+"head ->\t");
+            linFirst = linFirst.next;//跳过第一列的元素
+            while (linFirst != null){
+                if(linFirst.next != null){
+                    System.out.print(""+linFirst.key +'\t'+"->\t");
+                }else {
+                    System.out.println("tail");
+                }
+                linFirst = linFirst.next;
+            }
+            System.out.println();
+        }
+    }
+
+    public void delete(int key){
+        Node pre=searchPre(key);
+        if(pre==null) return;
+        while(true){
+            pre.next=pre.next.next;
+            pre=pre.down;
+            if(pre==null) break;
+            while(pre.next.key!=key){
+                pre=pre.next;
+            }
+        }
+        size--;
+    }
+
     public void add(int key){
-        //跳表存在的情况下，key已经存在，则退出
         if(maxLevel!=-1&&search(key)!=null) return;
 
         int level=randLevel();
@@ -67,9 +119,9 @@ public class SkipTable {
         if(level>maxLevel){
             int diff=level-maxLevel;
             for (int i = 0; i < diff; i++) {
-                Node newHeadFirst=new Node(Integer.MIN_VALUE,maxLevel+i+1);
-                Node newTailFirst=new Node(Integer.MAX_VALUE,maxLevel+i+1);
-                if(headColumn.size()>0) {//跳表非空，则处理down指针
+                Node newHeadFirst=new Node(maxLevel+i+1,true,false);
+                Node newTailFirst=new Node(maxLevel+i+1,false,true);
+                if(headColumn.size()>0) {
                     Node headFirst = headColumn.getFirst();
                     newHeadFirst.down = headFirst;
                 }
@@ -91,9 +143,10 @@ public class SkipTable {
         Node p=head;
         while (p!=null&&p.next!=null){
             //往后走
-            while (p.next.key<node.key){
+            while (!p.next.end&&p.next.key<node.key){
                 p=p.next;
             }
+
             //连接前后
             node.next=p.next;
             p.next=node;
@@ -109,10 +162,6 @@ public class SkipTable {
         size++;
     }
 
-    /**
-     * 至少有一层，至少为0
-     * @return
-     */
     private int randLevel(){
         int level=0;
         while (Math.random()>0.5){
@@ -121,95 +170,8 @@ public class SkipTable {
         return level;
     }
 
-    /**
-     * 删除key所在的列
-     * @param key
-     */
-    public void delete(int key){
-        Node pre=searchPre(key);
-        if(pre==null) return;
-        while(true){
-            pre.next=pre.next.next;
-            pre=pre.down;
-            if(pre==null) break;
-            while(pre.next.key!=key){
-                pre=pre.next;
-            }
-        }
-        size--;
-    }
-
-    public Node search(int key){
-        Node head=headColumn.getFirst();
-        //一直往右走，不能继续往右走则往下走
-        Node p=head;
-        while(p!=null&&p.next!=null){//！！！while中使用相同级别指针
-            if(p.next.key==key){
-                return p.next;
-            }
-            if(p.next.key<key){
-                p=p.next;
-                continue;
-            }
-            if(p.next.key>key){
-                p=p.down;
-                continue;
-            }
-        }
-        return null;
-    }
-
-    private Node searchPre(int key){
-        Node head=headColumn.getFirst();
-        //一直往右走，不能继续往右走则往下走
-        Node p=head;
-        while(p!=null&&p.next!=null){
-            if(p.next.key==key){
-                return p;
-            }
-            if(p.next.key<key){
-                p=p.next;
-                continue;
-            }
-            if(p.next.key>key) {
-                p = p.down;
-                continue;
-            }
-        }
-        return null;
-    }
-
-    public void clear(){
-        headColumn=new LinkedList<>();
-        tailColumn=new LinkedList<>();
-        maxLevel=-1;//从第0层开始
-        size=0;
-    }
-
-    /**
-     * 从上到下打印跳表的内容
-     */
-    public void show(){
-        System.out.println("跳表层数："+maxLevel+", 元素个数为："+size);
-        //从上往下逐层打印
-        for (int i = 0; i <=maxLevel ; i++) {
-            Node linFirst = headColumn.get(i);
-            System.out.print("第"+linFirst.level+"层:\t"+"head ->\t");
-            linFirst = linFirst.next;//跳过第一列的元素
-            while (linFirst != null){
-                if(linFirst.next != null){
-                    System.out.print(""+linFirst.key +'\t'+"->\t");
-                }else {
-                    System.out.println("tail");
-                }
-                linFirst = linFirst.next;
-            }
-            System.out.println();
-        }
-    }
-
     public static void main(String[] args) {
-        SkipTable skipTable = new SkipTable();
+        SkipTable2 skipTable = new SkipTable2();
 
         int times=100000;
         int maxLen=100;
