@@ -3,15 +3,12 @@
 
 |Package|Description|
 |---|---|
-|test|测试|
 |bit|位操作|
-|bit2|位操作|
 |sort|排序|
 |dichotomy|二分法|
 |link|链表|
 |tree|二叉树|
 |graph|图|
-|dichotomy|二分法|
 |prefix_tree|前缀树|
 |greed|贪心|
 |force|暴力递归|
@@ -37,12 +34,21 @@
  * -128
  * 补码=1000 0000
 ```
-# 注意
-- 代码思想来自左神课程，代码编写由自己完成
-
 # 位运算
 - 相反数 `~x+1`
 - 最优侧的1 `x&(~x+1)`
+# sort
+|Type|Profile|
+|---|---|
+|QuickSort|O(nlogn), recursive O(logn), unstable|
+|MergeSort||
+|HeapSort||
+|RadixSort||
+|InsertSort||
+|BubbleSort||
+|SelectSort||
+# 注意
+- 代码思想来自左神课程，代码编写由自己完成
 
 # tree套路
 - 上下两层，整棵树
