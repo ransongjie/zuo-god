@@ -1,4 +1,4 @@
-package com.xcrj.pass1.ordered_table;
+package com.xcrj.pass1.b_tree;
 
 import java.util.ArrayList;
 import java.util.Collections;

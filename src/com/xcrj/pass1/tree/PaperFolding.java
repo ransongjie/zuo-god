@@ -1,5 +1,9 @@
 package com.xcrj.pass1.tree;
-//折纸 从上到下输出折痕方向
+
+/**
+ * 折纸 从上到下输出折痕方向
+ * 前序遍历构建，中序遍历（从上到下）输出
+ */
 public class PaperFolding {
     public static void main(String[] args) {
         Node root=buildPreOrder(1,3);
@@ -11,7 +15,12 @@ public class PaperFolding {
         printInOrder2(root,true, 3);
     }
 
-    //根是凹的，左孩子始终是凹的，右孩子始终是凸的
+    /**
+     * 根是凹的，左孩子始终是凹的，右孩子始终是凸的
+     * @param a 1 left 凹，-1 right 凸
+     * @param k
+     * @return
+     */
     public static Node buildPreOrder(int a,int k) {
         if(k==0) return null;
         Node node=new Node(a);

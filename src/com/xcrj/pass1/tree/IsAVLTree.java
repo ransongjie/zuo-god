@@ -1,6 +1,6 @@
 package com.xcrj.pass1.tree;
 //平衡二叉树
-public class BalanceBinaryTree {
+public class IsAVLTree {
     public static void main(String[] args) {
         Node node1=new Node(1);
         Node node2=new Node(2);
@@ -22,6 +22,8 @@ public class BalanceBinaryTree {
     }
 
     /**
+     * 后续遍历
+     *
      * 左子树
      * - 是否平衡二叉树
      * - 子树高度

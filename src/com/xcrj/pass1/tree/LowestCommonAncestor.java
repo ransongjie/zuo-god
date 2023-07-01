@@ -5,7 +5,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-//最低公共祖先
+/**
+ * 最低公共祖先
+ * o1或o2在另一个的子树上
+ * o1和o2在o的左右子树上
+ */
 public class LowestCommonAncestor {
     public static void main(String[] args) {
         Node node1=new Node(1);
@@ -59,15 +63,19 @@ public class LowestCommonAncestor {
     }
 
     public static Node sonTree2(Node root,Node o1,Node o2) {
+        //找到一个就返回
         if(root==null||root==o1||root==o2){
             return root;
         }
+        //
         Node left=sonTree2(root.left, o1, o2);
         Node right=sonTree2(root.right, o1, o2);
+        //左右都不为空返回root
         if(left!=null&&right!=null){
             return root;
         }
-        return left==null?right:left;//需要将找到的right或left返回上一层
+        //需要将找到的right或left返回上一层
+        return left==null?right:left;
     }
 
     public static Node ancestor2(Node root,Node o1,Node o2) {

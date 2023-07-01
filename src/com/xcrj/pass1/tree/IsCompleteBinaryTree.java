@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 //完全二叉树
-public class CompleteBinaryTree{
+public class IsCompleteBinaryTree {
     public static void main(String[] args) {
         Node node1=new Node(1);
         Node node2=new Node(2);
@@ -30,6 +30,13 @@ public class CompleteBinaryTree{
         System.out.println(acbt(root));
     }
 
+    /**
+     * 宽度优先遍历
+     * 1. 有右无左，返回false
+     * 2. 有左无右，后续结点必须全是叶子结点
+     * @param root
+     * @return
+     */
     public static boolean acbt(Node root) {
         if(root==null) return true;
         Queue<Node> que=new LinkedList<>();

@@ -1,6 +1,6 @@
 package com.xcrj.pass1.tree;
 //满二叉树
-public class FullBinaryTree {
+public class IsFullBinaryTree {
     public static void main(String[] args) {
         Node node1=new Node(1);
         Node node2=new Node(2);
@@ -21,6 +21,8 @@ public class FullBinaryTree {
     }
 
     /**
+     * 后续遍历
+     * 结点数量=2^height-1
      * 左子树：
      * - height
      * - nodeNum

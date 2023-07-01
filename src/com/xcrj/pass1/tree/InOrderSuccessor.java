@@ -25,13 +25,18 @@ public class InOrderSuccessor {
     }
 
     public static NodeP getSuccesor(NodeP x) {
+        //左根右 我是根 右（左根右）
+        //右孩子不空，返回右孩子的最左孩子
         if(x.right!=null){
             NodeP n=x.right;
             while(n.left!=null){
                 n=n.left;
             }
             return n;
-        }else{
+        }
+        //左根右，（左根右）根右
+        //我是父亲的左孩子，返回父亲，否则一直往上找父亲
+        else{
             NodeP p=x.parent;
             while(p.left!=x){
                 x=p;

@@ -29,7 +29,11 @@ public class MaxWidth {
         System.out.println(maxWidth3(root));
     }
 
-    //
+    /**
+     * 宽度优先遍历，记录最大层数，记录Map<node,level>结点所在层数
+     * @param root
+     * @return
+     */
     public static int maxWidth(Node root) {
         if(root==null) return 0;
         int maxNum=Integer.MIN_VALUE;
@@ -64,6 +68,11 @@ public class MaxWidth {
         return maxNum;
     }
 
+    /**
+     *
+     * @param root
+     * @return
+     */
     public static int maxWidth2(Node root) {
         if(root==null) return 0;
         Queue<Node> que=new LinkedList<>();
@@ -99,7 +108,14 @@ public class MaxWidth {
         return maxNum;
     }
 
-    //广度优先遍历 双层指针 curEnd nxtEnd
+    /**
+     * 广度优先遍历 每到一层的最后一个结点进行统计
+     * curEnd：当前层最后一个结点
+     * nxtEnd：下层最后一个结点
+     * curNodeNum：当前层结点数量
+     * @param root
+     * @return
+     */
     public static int maxWidth3(Node root) {
         if(root==null) return 0;
         Queue<Node> que=new LinkedList<>();
@@ -108,11 +124,11 @@ public class MaxWidth {
         int max=Integer.MIN_VALUE;
         Node curEnd=root;
         Node nxtEnd=null;
-        int curNodes=0;
+        int curNodeNum=0;
         //
         while(!que.isEmpty()){
             Node node=que.poll();
-            curNodes++;
+            curNodeNum++;
             //
             if(node.left!=null){
                 que.offer(node.left);
@@ -124,9 +140,9 @@ public class MaxWidth {
             }
             //
             if(node==curEnd){
-                max=Math.max(max, curNodes);
+                max=Math.max(max, curNodeNum);
                 curEnd=nxtEnd;
-                curNodes=0;
+                curNodeNum=0;
             }
         }
         //

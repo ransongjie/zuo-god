@@ -18,8 +18,11 @@ public class Preorder{
         node4.left=node4.right=null;node5.left=node5.right=null;node6.left=node6.right=null;node7.left=node7.right=null;
         //
         Node root=node1;
-        // preorder(root);
+         preorder(root);
+        System.out.println("==========");
         preorder2(root);
+        System.out.println("==========");
+        preorder3(root);
     }
     //根右左
     public static void preorder(Node root) {
@@ -31,6 +34,24 @@ public class Preorder{
             System.out.println(n.val);
             if(n.right!=null) s.push(n.right);
             if(n.left!=null) s.push(n.left);
+        }
+    }
+    
+    //err
+    public static void preorder3(Node root) {
+        if(root==null) return;
+        Stack<Node> s=new Stack<>();
+        s.push(root);
+        while(!s.isEmpty()){
+            Node n=s.pop();
+            System.out.println(n.val);
+            if(n.left!=null){
+                n=n.left;
+                s.push(n);
+            }else if(n.right!=null){
+                n=n.right;
+                s.push(n);
+            }
         }
     }
 

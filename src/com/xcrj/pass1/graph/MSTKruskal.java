@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-//无向图
+//无向图 简化版并查集
 public class MSTKruskal {
     public static void main(String[] args) {
         int[][] inss = {

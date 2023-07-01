@@ -22,7 +22,7 @@ public class PostOrder {
         // postOrder(root);
         postOrder2(root);
     }
-    //根左右 > 出栈 根右左 > 另一个栈 > 出栈 左右根
+    //（先序遍历）根左右 > 出栈 根右左 > 另一个栈 > 出栈 左右根
     public static void postOrder(Node root) {
         if(root==null) return;
         Stack<Node> s1=new Stack<>();

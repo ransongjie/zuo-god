@@ -1,4 +1,4 @@
-package com.xcrj.pass1.ordered_table;
+package com.xcrj.pass1.b_tree;
 
 import java.util.*;
 
@@ -27,14 +27,14 @@ import java.util.*;
  * - https://blog.csdn.net/qq_36456827/article/details/122192984
  * - https://github.com/Morgan279/MemoryBasedBPlusTree
  */
-public class Bplus<K extends Comparable<K>,V> {
+public class BPlusTree<K extends Comparable<K>,V> {
     Node root;
 
     final int M;
     final int LB;//下边界
     final int UB;//上边界
 
-    Bplus(int m){
+    BPlusTree(int m){
         if(m<3) throw new RuntimeException("m>2");
         M=m;
         LB=m/2;
@@ -757,7 +757,7 @@ public class Bplus<K extends Comparable<K>,V> {
     }
 
     public static void main(String[] args) {
-        Bplus<Integer,Integer> bplus=new Bplus(5);
+        BPlusTree<Integer,Integer> bplus=new BPlusTree(5);
         int times=100000;
         int maxLen=100;
         int maxV=100;

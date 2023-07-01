@@ -18,7 +18,7 @@ package com.xcrj.pass1.ordered_table;
  * insert 插入
  * delete 删除
  */
-public class SB {
+public class SBTree {
      class Node{
          int key,size;
          Node left,right;
@@ -30,7 +30,7 @@ public class SB {
 
     Node root;
 
-    public SB(){
+    public SBTree(){
         this.root=null;
     }
     
@@ -195,7 +195,7 @@ public class SB {
     }
 
     public static void main(String[] args) {
-        SB tree = new SB();
+        SBTree tree = new SBTree();
 
         // Insert
         tree.insert(10);

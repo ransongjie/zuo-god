@@ -4,7 +4,7 @@ import java.util.Stack;
 
 //是否二叉搜索树
 //中序遍历 升序
-public class ASearchTree {
+public class IsBinarySearchTree {
     public static void main(String[] args) {
         Node nodea=new Node(5);
         Node nodeb=new Node(2);
@@ -64,8 +64,9 @@ public class ASearchTree {
         return true;
     }
 
-    //套路解法 后序遍历
     /**
+     * 后序遍历
+     *
      * 左子树：
      * - 是不是搜索二叉树
      * - 左子树的最大值

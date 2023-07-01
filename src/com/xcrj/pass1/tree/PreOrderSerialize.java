@@ -33,6 +33,11 @@ public class PreOrderSerialize {
         serialize(root.right,sb);
     }
 
+    /**
+     * #_2_#_4_5_
+     * @param root
+     * @return
+     */
     public static String serialize2(Node root) {
         if(root==null) return "#_";
         String str=root.val+"_";
