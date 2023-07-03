@@ -33,11 +33,12 @@ public class HeapSort {
     }
     // 大根堆
     public static void heapSort(int[]as) {
-        //逐个元素插入
+        //初始建堆
         for (int i = 0; i < as.length; i++) {
             heapInsert(as, i);
         }
 
+        //重建堆
         int heapSize=as.length-1;
         for (int i = 0; i < as.length; i++) {//i < as.length
             swap(as, 0, heapSize);

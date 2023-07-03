@@ -1,5 +1,5 @@
 # pass
-|Package|Description|
+|Class|Description|
 |---|---|
 |bit|位操作|
 |sort|排序|
@@ -91,6 +91,7 @@
 |ordered_table/SkipTable|跳表|搜索树|
 |b_tree/BTree|B树|索引树|
 |b_tree/BPlusTree|B+树|索引树，范围搜索|
+
 # 计算机bit
 ```
  * 计算机中负数使用补码表示
@@ -134,3 +135,86 @@
 
 # 参考
 - [总结自左程云 bilibili课程代码](https://www.bilibili.com/video/BV13g41157hK)
+
+# leetcode
+|Name|Class|Description|
+|---|---|---|
+|绳子最多压中几个点|A000MaxPoint||
+|分开GB最小相邻交换次数|A001MinStep||
+|+-获得target的方法数|A002TargetSum||
+|平分司机到AB区域的最高收入|A003MaxIncome||
+|O(1)时间put,get,setAll的HashMap|A004SetAll||
+|最长无重复字符的子串长度|A005MaxLongestSubStr||
+|能力值差k的最大比赛场数|A006MaxGameK||
+|每艘船最多坐两人的最少船数量|A007MinBoat||
+|连续子数组最大累加和|A008MaxSubArray||
+|孩子分糖果所需最少糖果数量|A009SumCandy||
+|AB字符串（相对次序不变）能否交错组成字符串C|A011BoolStr12Sum||
+|相等子树数量|A012SameTree||
+|最短编辑距离(两字符串的相似度)|A013MinEditDistance||
+|括号嵌套的四则运算表达式结果|A014Bracket||
+|二维能围住的最大水量|A015MaxWater||
+|无序括号对变有效的所有方案|A016RemoveInvalidParenthesis||
+|递增子序列的最大长度|A017MaxIncSub||
+|num是不是某个数的步骤和(stepNum)|A018IsStepSum||
+|体力跳台阶的最少次数|A019MinStep||
+|逻辑表达式加括号为true或false的方法数|A020WayBoolExpression||
+|阈值abc抽牌获胜概率|A021PCard||
+|洗衣机相连转移所需最少轮数（一样多衣服）|A022Washer||
+|约瑟夫环公式法|A023Joseph||
+|行列有序矩阵数组中第k小的数|A024MinK||
+|s中t子串的数量|A025WaySubStr1Str2||
+|不同非空子序列的个数|A026StrDiffSubStr||
+|纵横联通两个岛的桥的最短距离|A028IslandBridge||
+|LRU最近最少使用算法|A029LRUCache||
+|k个升序数组的最窄包含区间|A030SamlleastRangeCovering||
+|一维接雨水|A031D1TrappingRain||
+|二维接雨水|A032D2TrappingRain||
+|水王数(出现次数>N/2的数)|A033SuperWater||
+|水王数(出现次数>N/k的数)|A034SuperWaterK||
+|k个石堆相邻合并成一堆的最小代价|A035MinCostMergeStones||
+|A包含B所有字符的最短子串|A036MinStr12Window||
+|每种字符保留1个且字典序最小的结果串|A037RemoveDuplicateLettersLessLexi||
+|根据文化衫问卷获取最少人数|A038MinPeople||
+|是否有效的括号对|A039ValidParentheses||
+|是否数独(0~9行列3x3小格子不重复)|A040ValidSudoKu||
+|求解数独(0~9行列3x3小格子不重复)|A041SudokuSolver||
+|x的n次方n非负数|A042QuickPow||
+|x的n次方n可负数|A043QuickPow||
+|sqrt(x)下取整|A044Sqrt||
+|是0则所在行列都变0|A045SetMatrix0||
+|子数组最大累乘积|A046CumMultiple||
+|n!末尾有几个0|A047Factorial0Num||
+|翻转二进制位|A048ReverseBit||
+|质数(素数)数量|A049CountPrimes||
+|出卷子的方法数(相邻难度限制)|A050ExamMWays||
+|房屋偷盗|A051MaxHousePick||
+|查找名人|A052FindCelebrity||
+|相加等于A的最少完全平方数个数|A053PerfectNum||
+|生命游戏细胞死亡存活|A054LifeGame||
+|n是不是3的幂|A055Power3||
+|最多包含k种字符的候选子串的最大长度|A056MaxSubStrKDiffChar||
+|O(1)插入删除和获取随机元素|A057AddDelGetRandom||
+|字符串在len字典中的位置|A058DictOrder||
+|魔法石头过河(一半蓝一半红)的最小代价|A059MagicStone||
+|01字符等比例切分方案|A060Ratio01Split||
+|数组拿完所获最大分数(拿a都+a)|A061PickAddMax||
+|字典序最大的长度为k的子序列(可不连续)|A062MaxKLenSequence||
+|保留/删除数字的最大价值(相同数字递增，不同数字归1)|A063Max01Value||
+|能够全消子序列的最大长度(01消除23消除)|A064MaxSubStrLenDisappear||
+|数组变有序的最少交换次数|A065MinSwapTimesOrdered||
+|使得相邻元素值之差绝对值最小的交换次数|A065MinSwapTimesOrdered||
+|下一个全排列|A066NextPermutation||
+|最佳聚会地点(二维数组中1代表人)|A067BestMeetingPoint||
+|执行两种操作(变0或变相反数)使累加和降到0以下的最小成本|A068MinCostSumNoPositiveNum||
+|含有k种不同整数的子数组的个数|A069SubArrContainsKKind||
+|魔法积木最少合并堆数|A070SMagicBlock||
+|供暖站能够覆盖所有地区的统一最小供暖半径|A071MinRadiusHeaterHouse||
+|第k小的数字对差值绝对值|A072MinKthPairDiffAbs||
+|障碍球进洞最短路径和走法|A073BallToHoleWay||
+|长度>=2的等差子序列的数量|A074Bigger2ArithmeticSequence||
+|扫地机器人|A075RoomRobotCleaner||
+|吃香蕉的狒狒|A076EatingBananas||
+|不相交的线的最大数量(AB的最长公共子序列)|A077MaxUncrossedLines||
+|中间有k个未点亮灯泡的最小时刻|A078MinTimeKUnlitBulb||
+|避免洪水泛滥(不下雨抽水)|A079AvoidFlood||

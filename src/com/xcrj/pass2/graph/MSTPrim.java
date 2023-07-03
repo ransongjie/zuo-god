@@ -3,7 +3,10 @@ package com.xcrj.pass2.graph;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 import java.util.Set;
-
+/**
+ * 最小生成树
+ * 加点法
+ */
 public class MSTPrim {
     public static void main(String[] args) {
         int[][] inss = {
@@ -42,6 +45,7 @@ public class MSTPrim {
         Set<Edge> rset = new HashSet<>();
 
         Set<Node> selected = new HashSet<>();// 选最小边相连的点
+        //利用优先级队列，将已选点能到边排序
         PriorityQueue<Edge> pque = new PriorityQueue<>((e1, e2) -> e1.weight - e2.weight);
         for (Node n : g.nodes.values()) {// 森林
             if (selected.contains(n)) continue;
@@ -57,6 +61,7 @@ public class MSTPrim {
 
                 rset.add(e);
                 selected.add(e.to);
+                //将新点连接边都加入队列
                 for (Edge edge : e.to.adjes) {
                     pque.offer(edge);
                 }

@@ -4,7 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 自建堆 
+ * 最短路径
+ * 自建堆
  * dijkstra在原本已经加入系统堆的结点的距离会再变化，系统堆不能满足需求
  */
 public class SPDijkstra2 {
@@ -27,6 +28,7 @@ public class SPDijkstra2 {
         for (Edge e : g.edges) {
             System.out.println(e.from.val+", "+e.to.val+", "+e.weight);
         }
+
         Map<Node,Integer> distanceMap=dijkstra(g.nodes.size(),g.nodes.get(0));
         distanceMap.forEach((k,v)->System.out.println(0+"->"+k.val+"="+v));
     }
@@ -40,6 +42,8 @@ public class SPDijkstra2 {
             NodeRecord a=nh.pop();
             distanceMap.put(a.node, a.distance);
             for(Edge e:a.node.adjes){
+                //oldDistance: soruce->a
+                //oldDistance: soruce->to->a
                 nh.addOrUpdateOrIgnore(e.to, e.weight+a.distance);//选边
             }
         }
@@ -73,6 +77,7 @@ public class SPDijkstra2 {
             return size==0;
         }
 
+        //更新时，distance 比原来更小，往上重新建小根堆
         public void addOrUpdateOrIgnore(Node node,int distance) {
             //add
             if(!entered(node)){
@@ -87,16 +92,17 @@ public class SPDijkstra2 {
             if(inheap(node)){
                 if(distance>=nodeDistance.get(node)) return;
                 nodeDistance.put(node, distance);
-                heapInsert(nodeIdx.get(node));//distance比原来更小，往上重新建小根堆
+                heapInsert(nodeIdx.get(node));//（source—>node>to）distance 比原来更小，往上重新建小根堆
             }
 
             //ignore
         }
 
+        //需要重建堆
         public NodeRecord pop() {
             NodeRecord nr=new NodeRecord(nodes[0], nodeDistance.get(nodes[0]));
             swap(0, --size);
-            nodeIdx.put(nodes[size], -1);
+            nodeIdx.put(nodes[size], -1);//
             nodeDistance.remove(nodes[size]);
             nodes[size]=null;
             heapfy();
@@ -108,18 +114,20 @@ public class SPDijkstra2 {
             return nodeIdx.containsKey(node)&&nodeIdx.get(node)!=-1;
         }
 
-        //进入过堆
+        //进入过堆 nodeIdx.put(nodes[size], -1);也算进入过堆
         private boolean entered(Node node){
             return nodeIdx.containsKey(node);
         }
 
         private void heapInsert(int idx) {
+            //小根堆，子比父小则交换
             while(nodeDistance.get(nodes[idx])<nodeDistance.get(nodes[(idx-1)/2])){
                 swap(idx, (idx-1)/2);
                 idx=(idx-1)/2;
             }
         }
 
+        //小根堆，子子比较，父子比较
         private void heapfy(){
             int parent=0;
             int left=parent*2+1;
@@ -131,6 +139,7 @@ public class SPDijkstra2 {
                 }else{
                     less=right;
                 }
+                //已经满足，break，不用继续比较
                 if(nodeDistance.get(nodes[parent])<=nodeDistance.get(nodes[less])) break;
                 swap(parent, less);
                 parent=less;

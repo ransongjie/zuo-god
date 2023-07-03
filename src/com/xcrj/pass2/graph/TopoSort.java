@@ -38,6 +38,7 @@ public class TopoSort {
         while(!que.isEmpty()){
             Node a=que.poll();
             System.out.println(a.val);
+            //连接点入度--后为0，则加入队列
             for(Node b:a.adjns){
                 b.in--;
                 if(b.in==0){

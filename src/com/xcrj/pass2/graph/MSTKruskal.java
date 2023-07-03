@@ -8,6 +8,11 @@ import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+/**
+ * 最小生成树
+ * 避圈法
+ * 简单并查集
+ */
 public class MSTKruskal {
     public static void main(String[] args) {
         int[][] inss = {
@@ -42,17 +47,21 @@ public class MSTKruskal {
         }
     }
 
+    /**
+     * 并查集
+     */
     static class MySet {
+        //Map<点，所在集合>
         Map<Node, List<Node>> nodeList;
 
         public MySet() {
             this.nodeList = new HashMap<>();
         }
-
+        //两个点在同一个集合
         public boolean isSameSet(Node a, Node b) {
             return nodeList.get(a) == nodeList.get(b);
         }
-
+        //合并两个点的集合
         public void union(Node a, Node b) {
             if (isSameSet(a, b))
                 return;
@@ -68,6 +77,7 @@ public class MSTKruskal {
     public static Set<Edge> kruskal(Graph g) {
         Set<Edge> set=new HashSet<>();
 
+        //初始化并查集
         MySet mySet = new MySet();
         for (Node n : g.nodes.values()) {
             List<Node> list = new ArrayList<>();
@@ -75,11 +85,13 @@ public class MSTKruskal {
             mySet.nodeList.put(n, list);
         }
 
+        //根据权重排序边
         PriorityQueue<Edge> pque=new PriorityQueue<>((e1,e2)->e1.weight-e2.weight);
         for (Edge e : g.edges) {
             pque.offer(e);
         }
 
+        //根据权重从小到大选边，利用并查集避开圈
         while(!pque.isEmpty()){
             Edge e=pque.poll();
             Node a = e.from;

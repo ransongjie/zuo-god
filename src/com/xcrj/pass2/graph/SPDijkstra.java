@@ -5,6 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 最短路径
+ */
 public class SPDijkstra {
     public static void main(String[] args) {
         int[][] inss={
@@ -25,19 +28,25 @@ public class SPDijkstra {
         for (Edge e : g.edges) {
             System.out.println(e.from.val+", "+e.to.val+", "+e.weight);
         }
+
         Map<Node,Integer> distanceMap=dijkstra(g.nodes.get(0));
+        /**
+         * 0->1=10
+         * 1->2=3
+         */
         distanceMap.forEach((k,v)->System.out.println(0+"->"+k.val+"="+v));
     }
+
     public static Map<Node,Integer> dijkstra(Node s) {
         Map<Node,Integer> distanceMap=new HashMap<>();
         Set<Node> selectedSet=new HashSet<>();
         distanceMap.put(s,0);//源点到源点的距离为0
-        Node a=getMinDistanceAndUnselectedNode(distanceMap, selectedSet);//初始 选点
+        Node a=getMinDistanceAndUnselectedNode(distanceMap, selectedSet);//选点
         while(a!=null){
             selectedSet.add(a);
 
             int aDistance=distanceMap.get(a);
-            for(Edge e:a.adjes){//选边
+            for(Edge e:a.adjes){//选边 直达与中转对比
                 int oldDistance=distanceMap.getOrDefault(e.to, Integer.MAX_VALUE);
                 int newDistacne=e.weight+aDistance;
                 if(oldDistance>newDistacne){
@@ -50,6 +59,7 @@ public class SPDijkstra {
         return distanceMap;
     }
 
+    //选择排序，一趟获取最小值
     private static Node getMinDistanceAndUnselectedNode(Map<Node,Integer> distanceMap,Set<Node> selectedSet) {
         Node minNode=null;
         int minDistance=Integer.MAX_VALUE;
